@@ -50,9 +50,10 @@ module labL11 ;
              zero = (expect === 0) ? 1 : 0;
 
              if (ok)
-               $display("PASS:  a=%b b=%b a%sb=%b zero=%b",a, b, operator, z, zero);
+               $display("PASS:  a=%b\n       b=%b a%sb=%b zero=%b",a, b, operator, z, zero);
              else
-               $display("FAIL:  a=%b b=%b a%sb=%b expected=%b zero=%b" a, b, operator, z, expect, zero);
+               $display("FAIL:  a=%b\n       b=%b\n     a%sb=%b\nexpected=%b\n    zero=%b\n",
+                        a, b, operator, z, expect, zero);
           end
         $finish;
      end
