@@ -7,7 +7,8 @@ module yAlu (z, ex, a, b, op) ;
    output        ex;
    wire          cout;
    wire [31:0]   alu_and, alu_or, alu_arith, slt, tmp;
-   
+
+   reg sendctrl= 1;
 
    wire [15:0]   z16;
    wire [7:0]    z8;
@@ -28,8 +29,8 @@ module yAlu (z, ex, a, b, op) ;
    assign ex = z0;
 
    // set slt[0]
-   xor (condition, a[31], b[31]);
-   yArith slt_arith (tmp, cout, a, b, 1);
+   xor te(condition, a[31], b[31]);
+   yArith slt_arith (tmp, cout, a, b, sendctrl);
    yMux #(.SIZE(1)) slt_mux(slt[0], tmp[31], a[31], condition);
 
    // instantiate the components and connect them
