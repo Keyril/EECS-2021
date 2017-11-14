@@ -91,6 +91,7 @@ module yAlu (z, ex, a, b, op) ;
    wire [3:0]    z4;
    wire [1:0]    z2;
    wire          z1, z0;
+   reg sendctrl = 1;
 
    // upper bits are always zero
    assign slt[31:1] = 0;
@@ -105,8 +106,8 @@ module yAlu (z, ex, a, b, op) ;
    assign ex = z0;
 
    // set slt[0]
-   xor (condition, a[31], b[31]);
-   yArith slt_arith (tmp, cout, a, b, 1);
+   xor te(condition, a[31], b[31]);
+   yArith slt_arith (tmp, cout, a, b, sendctrl);
    yMux #(.SIZE(1)) slt_mux(slt[0], tmp[31], a[31], condition);
 
    // instantiate the components and connect them
